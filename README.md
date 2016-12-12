@@ -25,8 +25,8 @@ public interface Visitor {
 * For each model object to be visited, implement the interface ```Visitable<Visitor>```:
 ```java
 public class ClassA implements Visitable<Visitor> {
-  @Override public VisitResult enter(Visitor visitor) { return visitor.enter(visitor); }
-  @Override public void leave(Visitor visitor) { visitor.leave(visitor); }
+  @Override public VisitResult visitorEnter(Visitor visitor) { return visitor.enter(visitor); }
+  @Override public void visitorLeave(Visitor visitor) { visitor.leave(visitor); }
   
   @Override
   public Iterator<Visitable<DocumentVisitor>> getVisitableChildren() {
