@@ -1,4 +1,4 @@
-# visitor-codegen
-Visitor generator in Java
+# visitorj
+Visitor code generator in Java
 
-Test
+Work in progress.
