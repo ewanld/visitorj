@@ -34,7 +34,7 @@ public class ClassA implements Visitable<Visitor> {
   }
 }
 ```
-* Write a VisitorImpl class implementing the Visitor.
+* Write a ```VisitorImpl``` class implementing ```Visitor```.
 * Use the Visitor:
 ```java
   ClassA a = ...;
