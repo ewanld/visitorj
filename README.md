@@ -10,8 +10,8 @@ Features:
 Work in progress.
 
 ## Quickstart
-* Add a dependecy to the project visitorj-runtime.
-* Create a new interface Visitor with two methods for each object to be traversed:
+* Add a dependecy to the project ```visitorj-runtime```.
+* Create a new interface ```Visitor``` with two methods for each object to be traversed:
 ```java
 public interface Visitor {
   VisitResult enter(ClassA a);
