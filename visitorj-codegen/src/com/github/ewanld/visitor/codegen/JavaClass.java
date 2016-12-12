@@ -1,10 +1,19 @@
 package com.github.ewanld.visitor.codegen;
 
+/**
+ * Represents a java class. We do not use {@code Class<T>} since the class may or may not exist in the classpath.
+ */
 public class JavaClass {
 	private final String packageName;
 	private final String simpleName;
 	private final boolean recursive;
 
+	/**
+	 * @param fullName
+	 *            package name + class name
+	 * @param recursive
+	 *            True if the class references itself in its children, false otherwise.
+	 */
 	public JavaClass(String fullName, boolean recursive) {
 		this.recursive = recursive;
 		final int dotIndex = fullName.lastIndexOf('.');
