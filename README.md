@@ -2,7 +2,7 @@
 A Visitor design pattern implementation and code generator in Java.
 
 Features:
-* Supports both Depth-first and breadt-first traversal.
+* Supports both depth-first and breadth-first traversal.
 * The Visitors have access to the current traversal context.
 * Visitor code generator.
 * No boilerplate code to write.
