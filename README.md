@@ -41,8 +41,34 @@ public class ClassA implements Visitable<Visitor> {
   a.accept(new VisitorImpl());
 ```
 
+## Breadth-first traversal
+```java
+  ClassA a = ...;
+  a.accept_breadthFirst(new VisitorImpl());
+```
+
+
 ## Code generation
-TODO
+* Add a dependecy to the project ```visitorj-codegen```.
+* Call the code generator:
+```java
+  final File outputDir = ...;
+  final String packageName = "com.example";
+
+	final List<JavaClass> classes = new ArrayList<>();
+  // the 'main' class must be the first item in the list.
+  classes.add(new JavaClass("com.example.ClassA", false)); // false means the class does not reference itself in its children 
+  classes.add(new JavaClass("com.example.ClassB", true)); // true means the class references itself in its children
+  final CodeGeneratorService codeGen = new CodeGeneratorService();
+	codeGen.generateAll(outputDir, classes, packageName);
+```
+
+* The following files are created:
+  * ClassAVisitor.java: The Visitor interface.
+  * ClassAVisitorDelegate.java: a visitor delegate class.
+  * ClassAVisitorWithContext: An abstract visitor, implementing ```ClassAVisitor```, that provides traversal context.
+  * SimpleClassAVisitor: a default implementation of the ```ClassAVisitor``` interface.
+  * SimpleClassAVisitorWithContext: a default implementation of the ```ClassAVisitorWithContext``` abstract class.
 
 ## Examples
-TODO
+Check out the example contained in the project ```visitorj-examples```.
