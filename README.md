@@ -16,6 +16,7 @@ Work in progress.
 public interface Visitor {
   VisitResult enter(ClassA a);
   void leave(ClassA a);
+  
   VisitResult enter(ClassB b);
   void leave(ClassB b);
 }
@@ -23,7 +24,7 @@ public interface Visitor {
 
 * For each model object to be visited, implement the interface ```Visitable<Visitor>```:
 ```java
-public class A implements Visitable<Visitor> {
+public class ClassA implements Visitable<Visitor> {
   @Override public VisitResult enter(Visitor visitor) { return visitor.enter(visitor); }
   @Override public void leave(Visitor visitor) { visitor.leave(visitor); }
   
