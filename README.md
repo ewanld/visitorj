@@ -60,7 +60,7 @@ public class ClassA implements Visitable<Visitor> {
   classes.add(new JavaClass("com.example.ClassA", false)); // false means the class does not reference itself in its children 
   classes.add(new JavaClass("com.example.ClassB", true)); // true means the class references itself in its children
   final CodeGeneratorService codeGen = new CodeGeneratorService();
-	codeGen.generateAll(outputDir, classes, packageName);
+  codeGen.generateAll(outputDir, classes, packageName);
 ```
 
 * The following files are created:
