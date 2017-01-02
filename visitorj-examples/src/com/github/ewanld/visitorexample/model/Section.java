@@ -32,30 +32,6 @@ public class Section implements Visitable<DocumentVisitor> {
 		return paragraphs;
 	}
 
-	@Override
-	public VisitResult accept(DocumentVisitor visitor) {
-		final VisitResult result = visitor.enter(this);
-		if (result == VisitResult.ABORT) return VisitResult.ABORT;
-
-		if (result != VisitResult.SKIP_CHILDREN) {
-			for (final Section s : children) {
-				final VisitResult childResult = s.accept(visitor);
-				if (childResult == VisitResult.ABORT) return VisitResult.ABORT;
-				if (childResult == VisitResult.SKIP_SIBLINGS) break;
-			}
-
-			for (final Paragraph p : paragraphs) {
-				final VisitResult childResult = p.accept(visitor);
-				if (childResult == VisitResult.ABORT) return VisitResult.ABORT;
-				if (childResult == VisitResult.SKIP_SIBLINGS) break;
-			}
-		}
-
-		visitor.leave(this);
-		return result;
-
-	}
-
 	public String getTitle() {
 		return title;
 	}

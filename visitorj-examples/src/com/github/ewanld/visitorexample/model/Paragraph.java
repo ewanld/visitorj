@@ -15,14 +15,6 @@ public class Paragraph implements Visitable<DocumentVisitor> {
 	}
 
 	@Override
-	public VisitResult accept(DocumentVisitor visitor) {
-		final VisitResult result = visitor.enter(this);
-		if (result == VisitResult.ABORT) return result;
-		visitor.leave(this);
-		return result;
-	}
-
-	@Override
 	public VisitResult visitorEnter(DocumentVisitor visitor) {
 		return visitor.enter(this);
 	}
