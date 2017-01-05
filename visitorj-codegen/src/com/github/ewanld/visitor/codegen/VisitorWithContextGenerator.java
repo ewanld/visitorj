@@ -32,30 +32,21 @@ public class VisitorWithContextGenerator extends AbstractGenerator {
 		}
 		writeln();
 		
-		writeln("public abstract class %sVisitorWithContext implements DocumentVisitor {", mainClass);
+		writeln("public abstract class %sVisitorWithContext implements %sVisitor {", mainClass, mainClass);
 		
 		for (final JavaClass _class : classes) {
 		final String c = _class.getSimpleName();
 		final String c_ident = toIdent(_class);
-		if (_class.isRecursive()) {
-			writeln("	protected List<%s> %sAncestors = new ArrayList<%s>();", c, c_ident, c);
-		} else {
-			writeln("	protected %s %s;", c, c_ident);
-		}
+		writeln("	protected List<%s> %sAncestors = new ArrayList<%s>();", c, c_ident, c);
 		}
 		writeln();
 		
 		for (final JavaClass _class : classes) {
 		final String c = _class.getSimpleName();
 		final String c_ident = toIdent(_class);
-		final boolean recursive = _class.isRecursive();
 		
 		writeln("	public final VisitResult enter(%s %s) {", c, c_ident);
-		if (recursive) {
 		writeln("		this.%sAncestors.add(%s);", c_ident, c_ident);
-		} else {
-		writeln("		this.%s = %s;", c_ident, c_ident);
-		}
 		writeln("		return onEnter(%s);", c_ident);
 		writeln("	}\n");
 		
@@ -63,20 +54,14 @@ public class VisitorWithContextGenerator extends AbstractGenerator {
 		
 		writeln("	public final void leave(%s %s) {", c, c_ident);
 		writeln("		onLeave(%s);", c_ident);
-		if (recursive) {
 		writeln("		this.%sAncestors.remove(%sAncestors.size() - 1);", c_ident, c_ident);
-		} else {
-		writeln("		this.%s = null;", c_ident);
-		}
 		writeln("	}\n");
 		
 		writeln("	protected abstract void onLeave(%s %s);\n", c, c_ident);
 		
-		if (recursive) {
 		writeln("	protected %s get%s() {", c, c);
 		writeln("		return %sAncestors.get(%sAncestors.size() - 1);", c_ident, c_ident);
 		writeln("	}\n");
-		}
 		}
 		
 		writeln("}");

@@ -6,7 +6,6 @@ package com.github.ewanld.visitor.codegen;
 public class JavaClass {
 	private final String packageName;
 	private final String simpleName;
-	private final boolean recursive;
 
 	/**
 	 * @param fullName
@@ -14,8 +13,7 @@ public class JavaClass {
 	 * @param recursive
 	 *            True if the class references itself in its children, false otherwise.
 	 */
-	public JavaClass(String fullName, boolean recursive) {
-		this.recursive = recursive;
+	public JavaClass(String fullName) {
 		final int dotIndex = fullName.lastIndexOf('.');
 		packageName = fullName.substring(0, dotIndex);
 		simpleName = fullName.substring(dotIndex + 1);
@@ -35,9 +33,4 @@ public class JavaClass {
 	public String getFullName() {
 		return packageName + "." + simpleName;
 	}
-
-	public boolean isRecursive() {
-		return recursive;
-	}
-
 }
