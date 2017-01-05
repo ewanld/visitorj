@@ -7,6 +7,9 @@ import java.util.Queue;
 
 /**
  * Represents an object that can be visited by a Visitor.
+ * 
+ * @param <T>
+ *            The Visitor type.
  */
 public interface Visitable<T> {
 	/**
@@ -61,7 +64,7 @@ public interface Visitable<T> {
 	VisitResult visitorEnter(T visitor);
 
 	/**
-	 * The implementation should always be the same:<br>
+	 * Required for double dispatch. The implementation should always be the same:<br>
 	 * {@code visitor.leave(this);}
 	 */
 	void visitorLeave(T visitor);
