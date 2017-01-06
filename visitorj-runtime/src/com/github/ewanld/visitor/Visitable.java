@@ -17,19 +17,24 @@ public interface Visitable<T> {
 	 * This method should not be overriden.
 	 */
 	default VisitResult accept(T visitor) {
-		final VisitResult result = visitorEnter(visitor);
+		final VisitResult result = visit(visitor);
 		if (result == VisitResult.ABORT) return VisitResult.ABORT;
 
 		if (result != VisitResult.SKIP_CHILDREN) {
-			final Iterator<Visitable<T>> it = getVisitableChildren();
+			final Iterator<? extends Visitable<T>> it = getVisitableChildren();
+			boolean first = true;
 			while (it.hasNext()) {
+				if (!first) event(VisitEvent.INBETWEEN_CHILDREN, visitor);
+				first = false;
+				event(VisitEvent.BEFORE_CHILD, visitor);
 				final Visitable<T> child = it.next();
 				final VisitResult childResult = child.accept(visitor);
 				if (childResult == VisitResult.ABORT) return VisitResult.ABORT;
+				event(VisitEvent.AFTER_CHILD, visitor);
 				if (childResult == VisitResult.SKIP_SIBLINGS) break;
 			}
 		}
-		visitorLeave(visitor);
+		event(VisitEvent.LEAVE, visitor);
 		return result;
 	}
 
@@ -42,18 +47,18 @@ public interface Visitable<T> {
 		queue.add(this);
 		while (!queue.isEmpty()) {
 			final Visitable<T> node = queue.remove();
-			final VisitResult result = node.visitorEnter(visitor);
+			final VisitResult result = node.visit(visitor);
 			if (result == VisitResult.ABORT) return;
 			if (result == VisitResult.SKIP_SIBLINGS) queue.clear();
 			if (result != VisitResult.SKIP_CHILDREN) node.getVisitableChildren().forEachRemaining(queue::add);
-			node.visitorLeave(visitor);
+			node.event(VisitEvent.LEAVE, visitor);
 		}
 	}
 
 	/**
 	 * Return the child nodes of this object. The default implementation has no child nodes.
 	 */
-	default Iterator<Visitable<T>> getVisitableChildren() {
+	default Iterator<? extends Visitable<T>> getVisitableChildren() {
 		return Collections.emptyIterator();
 	}
 
@@ -61,12 +66,12 @@ public interface Visitable<T> {
 	 * The implementation should always be the same:<br>
 	 * {@code return visitor.enter(this);}
 	 */
-	VisitResult visitorEnter(T visitor);
+	void event(VisitEvent event, T visitor);
 
 	/**
-	 * Required for double dispatch. The implementation should always be the same:<br>
-	 * {@code visitor.leave(this);}
+	 * The implementation should always be the same:<br>
+	 * {@code return visitor.enter(this);}
 	 */
-	void visitorLeave(T visitor);
+	VisitResult visit(T visitor);
 
 }
