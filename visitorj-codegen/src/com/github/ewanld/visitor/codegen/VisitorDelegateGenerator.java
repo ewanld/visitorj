@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Collection;
 
+import com.github.ewanld.visitor.VisitEvent;
 import com.github.ewanld.visitor.VisitResult;
 
 public class VisitorDelegateGenerator extends AbstractGenerator {
@@ -13,13 +14,12 @@ public class VisitorDelegateGenerator extends AbstractGenerator {
 	}
 
 	@Override
-	public void generate(String packageName, Collection<JavaClass> classes) throws IOException {
-		final String mainClass = classes.iterator().next().getSimpleName();
-
+	public void generate(String visitorName, String packageName, Collection<JavaClass> classes) throws IOException {
 		// @formatter:off
 		writeln("package %s;\n", packageName);
 		writeln();
 		writeln("import %s;", VisitResult.class.getName());
+		writeln("import %s;", VisitEvent.class.getName());
 		writeln();
 		for (final JavaClass c : classes) {
 		if (!c.getPackageName().equals(packageName)) {
@@ -28,11 +28,11 @@ public class VisitorDelegateGenerator extends AbstractGenerator {
 		}
 		writeln();
 		
-		writeln("public class %sVisitorDelegate implements %sVisitor {", mainClass, mainClass);
+		writeln("public class %sVisitorDelegate implements %sVisitor {", visitorName, visitorName);
 		
-		writeln("	private final %sVisitor visitor;", mainClass);
+		writeln("	private final %sVisitor visitor;", visitorName);
 		
-		writeln("	public %sVisitorDelegate(%sVisitor visitor) {", mainClass, mainClass);
+		writeln("	public %sVisitorDelegate(%sVisitor visitor) {", visitorName, visitorName);
 		writeln("		this.visitor = visitor;");
 		writeln("	}");
 		
@@ -41,13 +41,13 @@ public class VisitorDelegateGenerator extends AbstractGenerator {
 		final String c_ident = toIdent(_class);
 		
 		writeln("	@Override");
-		writeln("	public VisitResult enter(%s %s) {", c, c_ident);
-		writeln("		return visitor.enter(%s);", c_ident);
+		writeln("	public VisitResult visit(%s %s) {", c, c_ident);
+		writeln("		return visitor.visit(%s);", c_ident);
 		writeln("	}\n");
 		
 		writeln("	@Override");
-		writeln("	public void leave(%s %s) {", c, c_ident);
-		writeln("		visitor.leave(%s);", c_ident);
+		writeln("	public void event(VisitEvent event, %s %s) {", c, c_ident);
+		writeln("		visitor.event(event, %s);", c_ident);
 		writeln("	}\n");
 		}
 		

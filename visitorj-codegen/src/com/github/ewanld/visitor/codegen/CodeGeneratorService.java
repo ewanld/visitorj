@@ -10,18 +10,16 @@ import java.util.List;
  * Entry point for the code generation facility.
  */
 public class CodeGeneratorService {
-	public void generateAll(File outputDir, List<JavaClass> classes, String packageName,
+	public void generateAll(String visitorName, File outputDir, List<JavaClass> classes, String packageName,
 			EnumSet<GeneratorType> toBeGenerated) throws IOException {
 		final File srcDir = new File(outputDir.getPath() + "/" + packageName.replace('.', '/'));
 		srcDir.mkdirs();
 
-		final String mainClassName = classes.iterator().next().getSimpleName();
-
 		for (final GeneratorType e : toBeGenerated) {
-			final String className = String.format(e.getClassNameTemplate(), mainClassName);
+			final String className = String.format(e.getClassNameTemplate(), visitorName);
 			final FileWriter writer = new FileWriter(String.format("%s/%s.java", srcDir, className));
 			final AbstractGenerator generator = e.getGeneratorSupplier().apply(writer);
-			generator.generate(packageName, classes);
+			generator.generate(visitorName, packageName, classes);
 			generator.close();
 		}
 	}
@@ -29,7 +27,8 @@ public class CodeGeneratorService {
 	/**
 	 * Convenience method.
 	 */
-	public void generateAll(File outputDir, List<JavaClass> classes, String packageName) throws IOException {
-		generateAll(outputDir, classes, packageName, EnumSet.allOf(GeneratorType.class));
+	public void generateAll(String visitorName, File outputDir, List<JavaClass> classes, String packageName)
+			throws IOException {
+		generateAll(visitorName, outputDir, classes, packageName, EnumSet.allOf(GeneratorType.class));
 	}
 }

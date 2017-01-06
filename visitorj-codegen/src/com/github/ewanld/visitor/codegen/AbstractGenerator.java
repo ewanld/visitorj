@@ -26,7 +26,8 @@ public abstract class AbstractGenerator implements AutoCloseable {
 		writer.close();
 	}
 
-	public abstract void generate(String packageName, Collection<JavaClass> classes) throws IOException;
+	public abstract void generate(String visitorName, String packageName, Collection<JavaClass> classes)
+			throws IOException;
 
 	protected final String toIdent(JavaClass _class) {
 		final String className = _class.getSimpleName();
