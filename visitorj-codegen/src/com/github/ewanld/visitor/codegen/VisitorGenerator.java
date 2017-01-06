@@ -35,7 +35,7 @@ public class VisitorGenerator extends AbstractGenerator {
 		final String c_ident = toIdent(_class);
 		
 		writeln("	VisitResult visit(%s %s);\n", c, c_ident);
-		writeln("	void event(VisitEvent event, %s %s);\n", c, c_ident);
+		writeln("	default void event(VisitEvent event, %s %s) {}\n", c, c_ident);
 		}
 		
 		writeln("}");

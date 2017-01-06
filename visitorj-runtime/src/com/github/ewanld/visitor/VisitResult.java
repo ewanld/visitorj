@@ -42,5 +42,4 @@ public enum VisitResult {
 	public boolean skipSiblings() {
 		return skipSiblings;
 	}
-
 }

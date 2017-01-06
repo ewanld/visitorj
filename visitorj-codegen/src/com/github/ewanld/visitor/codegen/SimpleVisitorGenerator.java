@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.Collection;
 
-import com.github.ewanld.visitor.VisitEvent;
 import com.github.ewanld.visitor.VisitResult;
 
 public class SimpleVisitorGenerator extends AbstractGenerator {
@@ -19,7 +18,6 @@ public class SimpleVisitorGenerator extends AbstractGenerator {
 		writeln("package %s;\n", packageName);
 		writeln();
 		writeln("import %s;", VisitResult.class.getName());
-		writeln("import %s;", VisitEvent.class.getName());
 		writeln();
 		for (final JavaClass c : classes) {
 		if (!c.getPackageName().equals(packageName)) {

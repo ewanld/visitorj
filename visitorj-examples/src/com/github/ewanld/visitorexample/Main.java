@@ -11,26 +11,47 @@ import com.github.ewanld.visitorexample.model.JsonElement;
 import com.github.ewanld.visitorexample.model.JsonNumber;
 import com.github.ewanld.visitorexample.model.JsonObject;
 import com.github.ewanld.visitorexample.model.JsonObjectProperty;
+import com.github.ewanld.visitorexample.visitors.FindByIdVisitor;
 import com.github.ewanld.visitorexample.visitors.PrintJsonVisitor;
 
 public class Main {
 	public static void main(String[] args) throws Exception {
 		// @formatter:off
-		final JsonElement elt = obj(
-			prop("value", num(3)),
-			prop("visible", bool(true)),
-			prop("myArray", array(
-				num(3), num(4), num(5)
-			)),
-			prop("myDict", obj(
-					prop("a", num(10)),
-					prop("b", num(20))
-			))
+		final JsonElement elt = array(
+			obj(
+				prop("id", num(1)),
+				prop("visible", bool(true)),
+				prop("contents", array(
+					num(3), num(4), num(5)
+				))
+			), obj(
+				prop("id", num(2)),
+				prop("visible", bool(false)),
+				prop("contents", array(
+					num(6), num(7), num(8)
+				))
+			), obj(
+				prop("id", num(3)),
+				prop("visible", bool(true)),
+				prop("contents", array(
+					num(9), num(10), num(11)
+				))
+			)
 		);
 		// @formatter:on
 
 		try (Writer outWriter = new OutputStreamWriter(System.out)) {
+			// serialize the whole JSON element
 			elt.accept(new PrintJsonVisitor(outWriter));
+			outWriter.write("\n");
+			outWriter.flush();
+
+			// find the object with id == 2
+			final FindByIdVisitor findId2 = new FindByIdVisitor(2);
+			elt.accept(findId2);
+
+			// serialize the object with id ==2
+			findId2.getResult().accept(new PrintJsonVisitor(outWriter));
 		}
 	}
 
