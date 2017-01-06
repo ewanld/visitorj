@@ -40,7 +40,8 @@ public interface Visitable<T> {
 
 	/**
 	 * Traverse this object structure (breadth-first).<br>
-	 * This method should not be overriden.
+	 * This method should not be overriden.<br>
+	 * Warning: does not call event methods.
 	 */
 	default void accept_breadthFirst(T visitor) {
 		final Queue<Visitable<T>> queue = new LinkedList<Visitable<T>>();
@@ -51,7 +52,6 @@ public interface Visitable<T> {
 			if (result == VisitResult.ABORT) return;
 			if (result.skipSiblings()) queue.clear();
 			if (!result.skipChildren()) node.getVisitableChildren().forEachRemaining(queue::add);
-			node.event(VisitEvent.LEAVE, visitor);
 		}
 	}
 
