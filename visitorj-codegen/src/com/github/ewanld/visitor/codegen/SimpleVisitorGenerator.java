@@ -38,11 +38,6 @@ public class SimpleVisitorGenerator extends AbstractGenerator {
 		writeln("	public VisitResult visit(%s %s) {", c, c_ident);
 		writeln("		return VisitResult.CONTINUE;");
 		writeln("	}\n");
-		
-		writeln("	@Override");
-		writeln("	public void event(VisitEvent event, %s %s) {", c, c_ident);
-		writeln("		// no op");
-		writeln("	}\n");
 		}
 		
 		writeln("}");
