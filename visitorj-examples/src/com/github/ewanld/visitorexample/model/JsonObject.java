@@ -2,6 +2,7 @@ package com.github.ewanld.visitorexample.model;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.Optional;
 
 import com.github.ewanld.visitor.VisitEvent;
 import com.github.ewanld.visitor.VisitResult;
@@ -19,6 +20,10 @@ public class JsonObject implements JsonElement {
 	@Override
 	public Iterator<? extends Visitable<JsonVisitor>> getVisitableChildren() {
 		return properties.iterator();
+	}
+
+	public Optional<JsonElement> getProperty(String name) {
+		return properties.stream().filter(p -> p.getName().equals(name)).findFirst().map(JsonObjectProperty::getValue);
 	}
 
 	@Override
