@@ -59,7 +59,7 @@ public class ClassA implements Visitable<Visitor> {
   classes.add(new JavaClass("com.example.ClassA")); 
   classes.add(new JavaClass("com.example.ClassB"));
   final CodeGeneratorService codeGen = new CodeGeneratorService();
-  codeGen.generateAll("MyVisitor", outputDir, classes, packageName);
+  codeGen.generateAll("ClassA", outputDir, classes, packageName);
 ```
 
 * The following files are created:
