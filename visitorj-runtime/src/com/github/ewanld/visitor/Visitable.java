@@ -64,13 +64,13 @@ public interface Visitable<T> {
 
 	/**
 	 * The implementation should always be the same:<br>
-	 * {@code return visitor.enter(this);}
+	 * {@code return visitor.event(event, this);}
 	 */
 	void event(VisitEvent event, T visitor);
 
 	/**
 	 * The implementation should always be the same:<br>
-	 * {@code return visitor.enter(this);}
+	 * {@code return visitor.visit(this);}
 	 */
 	VisitResult visit(T visitor);
 
