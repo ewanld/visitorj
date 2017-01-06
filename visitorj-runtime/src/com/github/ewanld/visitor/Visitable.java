@@ -49,8 +49,8 @@ public interface Visitable<T> {
 			final Visitable<T> node = queue.remove();
 			final VisitResult result = node.visit(visitor);
 			if (result == VisitResult.ABORT) return;
-			if (result == VisitResult.SKIP_SIBLINGS) queue.clear();
-			if (result != VisitResult.SKIP_CHILDREN) node.getVisitableChildren().forEachRemaining(queue::add);
+			if (result.skipSiblings()) queue.clear();
+			if (!result.skipChildren()) node.getVisitableChildren().forEachRemaining(queue::add);
 			node.event(VisitEvent.LEAVE, visitor);
 		}
 	}
