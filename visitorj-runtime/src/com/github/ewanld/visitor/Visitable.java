@@ -56,7 +56,7 @@ public interface Visitable<T> {
 	}
 
 	/**
-	 * Return the child nodes of this object. The default implementation has no child nodes.
+	 * Return an iterator on the child nodes of this object. The default implementation has no child nodes.
 	 */
 	default Iterator<? extends Visitable<T>> getVisitableChildren() {
 		return Collections.emptyIterator();
