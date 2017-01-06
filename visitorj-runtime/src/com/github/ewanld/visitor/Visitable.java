@@ -20,7 +20,7 @@ public interface Visitable<T> {
 		final VisitResult result = visit(visitor);
 		if (result == VisitResult.ABORT) return VisitResult.ABORT;
 
-		if (result != VisitResult.SKIP_CHILDREN) {
+		if (!result.skipChildren()) {
 			final Iterator<? extends Visitable<T>> it = getVisitableChildren();
 			boolean first = true;
 			while (it.hasNext()) {
@@ -31,7 +31,7 @@ public interface Visitable<T> {
 				final VisitResult childResult = child.accept(visitor);
 				if (childResult == VisitResult.ABORT) return VisitResult.ABORT;
 				event(VisitEvent.AFTER_CHILD, visitor);
-				if (childResult == VisitResult.SKIP_SIBLINGS) break;
+				if (childResult.skipSiblings()) break;
 			}
 		}
 		event(VisitEvent.LEAVE, visitor);
