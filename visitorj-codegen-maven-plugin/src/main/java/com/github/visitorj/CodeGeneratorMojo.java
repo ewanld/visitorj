@@ -25,7 +25,7 @@ public class CodeGeneratorMojo extends AbstractMojo {
 	@Parameter(property = "visitorName", defaultValue = "Visitor")
 	private String visitorName;
 
-	@Parameter(property = "outputDirectory", defaultValue = "${project.build.directory}/generated/java")
+	@Parameter(property = "outputDirectory", defaultValue = "${project.build.directory}/generated-sources/java")
 	private String outputDirectory;
 
 	@Parameter(property = "packageName", defaultValue = "")
