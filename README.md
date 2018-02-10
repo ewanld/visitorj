@@ -29,8 +29,11 @@ public class ClassA implements Visitable<Visitor> {
   @Override public void visitorLeave(Visitor visitor) { visitor.leave(visitor); }
   
   @Override
-  public Iterator<Visitable<DocumentVisitor>> getVisitableChildren() {
-    return Arrays.asList(child1, child2, etc).iterator();
+  public VisitableList<DocumentVisitor> getVisitableChildren() {
+    VisitableList<DocumentVisitor> res = new VisitableList<>();
+    res.add(child1);
+    res.add(child2);
+    return res;
   }
 }
 ```
