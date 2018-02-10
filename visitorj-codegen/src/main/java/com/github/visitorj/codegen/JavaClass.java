@@ -1,4 +1,4 @@
-package com.github.ewanld.visitor.codegen;
+package com.github.visitorj.codegen;
 
 /**
  * Represents a java class. We do not use {@code Class<T>} since the class may or may not exist in the classpath.

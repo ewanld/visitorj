@@ -1,14 +1,15 @@
-package com.github.ewanld.visitor.codegen;
+package com.github.visitorj.codegen;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Collection;
 
-import com.github.ewanld.visitor.VisitResult;
+import com.github.visitorj.VisitEvent;
+import com.github.visitorj.VisitResult;
 
-public class SimpleVisitorGenerator extends AbstractGenerator {
+public class VisitorGenerator extends AbstractGenerator {
 
-	public SimpleVisitorGenerator(Writer writer) {
+	public VisitorGenerator(Writer writer) {
 		super(writer);
 	}
 
@@ -18,6 +19,7 @@ public class SimpleVisitorGenerator extends AbstractGenerator {
 		writeln("package %s;\n", packageName);
 		writeln();
 		writeln("import %s;", VisitResult.class.getName());
+		writeln("import %s;", VisitEvent.class.getName());
 		writeln();
 		for (final JavaClass c : classes) {
 		if (!c.getPackageName().equals(packageName)) {
@@ -26,16 +28,14 @@ public class SimpleVisitorGenerator extends AbstractGenerator {
 		}
 		writeln();
 		
-		writeln("public class Simple%sVisitor implements %sVisitor {", visitorName, visitorName);
+		writeln("public interface %sVisitor {", visitorName);
 		
 		for (final JavaClass _class : classes) {
 		final String c = _class.getSimpleName();
 		final String c_ident = toIdent(_class);
 		
-		writeln("	@Override");
-		writeln("	public VisitResult visit(%s %s, String identifier) {", c, c_ident);
-		writeln("		return VisitResult.CONTINUE;");
-		writeln("	}\n");
+		writeln("	VisitResult visit(%s %s, String identifier);\n", c, c_ident);
+		writeln("	default void event(VisitEvent event, %s %s) {}\n", c, c_ident);
 		}
 		
 		writeln("}");

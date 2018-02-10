@@ -3,8 +3,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.ewanld.visitor.codegen.VisitorGeneratorService;
-import com.github.ewanld.visitor.codegen.JavaClass;
+import com.github.visitorj.codegen.JavaClass;
+import com.github.visitorj.codegen.VisitorGeneratorService;
 
 public class TestCodeGenerator {
 

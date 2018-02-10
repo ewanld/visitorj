@@ -1,4 +1,4 @@
-package com.github.ewanld.visitor.util;
+package com.github.visitorj.util;
 
 import java.util.ArrayList;
 import java.util.Collection;

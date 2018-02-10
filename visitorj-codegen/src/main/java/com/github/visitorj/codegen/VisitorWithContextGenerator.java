@@ -1,4 +1,4 @@
-package com.github.ewanld.visitor.codegen;
+package com.github.visitorj.codegen;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.github.ewanld.visitor.VisitEvent;
-import com.github.ewanld.visitor.VisitResult;
-import com.github.ewanld.visitor.VisitorContext;
+import com.github.visitorj.VisitEvent;
+import com.github.visitorj.VisitResult;
+import com.github.visitorj.VisitorContext;
 
 public class VisitorWithContextGenerator extends AbstractGenerator {
 

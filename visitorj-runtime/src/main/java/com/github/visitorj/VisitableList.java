@@ -1,11 +1,11 @@
-package com.github.ewanld.visitor;
+package com.github.visitorj;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import com.github.ewanld.visitor.util.CompositeIterator;
+import com.github.visitorj.util.CompositeIterator;
 
 public final class VisitableList<V> implements Iterable<IdentifiedVisitable<V>> {
 	private static final VisitableList<?> empty = new VisitableList<>();

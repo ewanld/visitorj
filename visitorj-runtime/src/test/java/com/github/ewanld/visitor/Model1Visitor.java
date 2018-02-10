@@ -1,5 +1,8 @@
 package com.github.ewanld.visitor;
 
+import com.github.visitorj.VisitEvent;
+import com.github.visitorj.VisitResult;
+
 public interface Model1Visitor {
 	VisitResult visit(Model1 model1, String identifier);
 

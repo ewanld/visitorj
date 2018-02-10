@@ -1,4 +1,4 @@
-package com.github.ewanld.visitor;
+package com.github.visitorj;
 
 public final class IdentifiedVisitable<V> {
 	private final Visitable<V> visitable;

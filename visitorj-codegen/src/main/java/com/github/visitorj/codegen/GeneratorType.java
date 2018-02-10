@@ -1,4 +1,4 @@
-package com.github.ewanld.visitor.codegen;
+package com.github.visitorj.codegen;
 
 import java.io.Writer;
 import java.util.function.Function;

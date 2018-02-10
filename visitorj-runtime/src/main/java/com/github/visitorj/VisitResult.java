@@ -1,4 +1,4 @@
-package com.github.ewanld.visitor;
+package com.github.visitorj;
 
 /**
  * Represent the next step to be taken by a Visitor after visiting a node.

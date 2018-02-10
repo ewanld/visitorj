@@ -1,5 +1,9 @@
 package com.github.ewanld.visitor;
 
+import com.github.visitorj.VisitEvent;
+import com.github.visitorj.VisitResult;
+import com.github.visitorj.Visitable;
+
 public class Model3 implements Visitable<Model1Visitor> {
 	@Override
 	public void event(VisitEvent event, Model1Visitor visitor) {

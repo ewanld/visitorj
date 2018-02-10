@@ -2,6 +2,11 @@ package com.github.ewanld.visitor;
 
 import java.util.List;
 
+import com.github.visitorj.VisitEvent;
+import com.github.visitorj.VisitResult;
+import com.github.visitorj.Visitable;
+import com.github.visitorj.VisitableList;
+
 public class Model1 implements Visitable<Model1Visitor> {
 	public Model2 model2;
 	public List<Model2> model2List;

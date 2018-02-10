@@ -1,15 +1,15 @@
-package com.github.ewanld.visitor.codegen;
+package com.github.visitorj.codegen;
 
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Collection;
 
-import com.github.ewanld.visitor.VisitEvent;
-import com.github.ewanld.visitor.VisitResult;
+import com.github.visitorj.VisitEvent;
+import com.github.visitorj.VisitResult;
 
-public class VisitorDelegateGenerator extends AbstractGenerator {
+public class SimpleVisitorWithContextGenerator extends AbstractGenerator {
 
-	public VisitorDelegateGenerator(Writer writer) {
+	public SimpleVisitorWithContextGenerator(Writer writer) {
 		super(writer);
 	}
 
@@ -28,26 +28,20 @@ public class VisitorDelegateGenerator extends AbstractGenerator {
 		}
 		writeln();
 		
-		writeln("public class %sVisitorDelegate implements %sVisitor {", visitorName, visitorName);
-		
-		writeln("	private final %sVisitor visitor;", visitorName);
-		
-		writeln("	public %sVisitorDelegate(%sVisitor visitor) {", visitorName, visitorName);
-		writeln("		this.visitor = visitor;");
-		writeln("	}");
+		writeln("public class Simple%sVisitorWithContext extends %sVisitorWithContext {", visitorName, visitorName);
 		
 		for (final JavaClass _class : classes) {
 		final String c = _class.getSimpleName();
 		final String c_ident = toIdent(_class);
 		
 		writeln("	@Override");
-		writeln("	public VisitResult visit(%s %s, String identifier) {", c, c_ident);
-		writeln("		return visitor.visit(%s, identifier);", c_ident);
+		writeln("	protected VisitResult onVisit(%s %s, String identifier) {", c, c_ident);
+		writeln("		return VisitResult.CONTINUE;");
 		writeln("	}\n");
 		
 		writeln("	@Override");
-		writeln("	public void event(VisitEvent event, %s %s) {", c, c_ident);
-		writeln("		visitor.event(event, %s);", c_ident);
+		writeln("	protected void onEvent(VisitEvent event, %s %s) {", c, c_ident);
+		writeln("		// no op");
 		writeln("	}\n");
 		}
 		

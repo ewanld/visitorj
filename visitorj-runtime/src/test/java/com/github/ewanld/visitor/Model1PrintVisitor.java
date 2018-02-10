@@ -1,5 +1,7 @@
 package com.github.ewanld.visitor;
 
+import com.github.visitorj.VisitResult;
+
 public class Model1PrintVisitor implements Model1Visitor {
 
 	@Override

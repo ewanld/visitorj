@@ -1,4 +1,4 @@
-package com.github.ewanld.visitor;
+package com.github.visitorj;
 
 import java.util.Iterator;
 import java.util.LinkedList;

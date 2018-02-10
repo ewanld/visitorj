@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.github.visitorj.util.CompositeIterator;
+
 public class TestCompositeIteratable {
 
 	/**
