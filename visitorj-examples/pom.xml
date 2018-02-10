@@ -59,14 +59,14 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<packageName>com.github.ewanld.visitorexample.model</packageName>
+							<packageName>com.github.visitorj.examples.model</packageName>
 							<visitorName>Json</visitorName>
 							<classes>
-								<class>com.github.ewanld.visitorexample.model.JsonArray</class>
-								<class>com.github.ewanld.visitorexample.model.JsonBoolean</class>
-								<class>com.github.ewanld.visitorexample.model.JsonNumber</class>
-								<class>com.github.ewanld.visitorexample.model.JsonObject</class>
-								<class>com.github.ewanld.visitorexample.model.JsonObjectProperty</class>
+								<class>com.github.visitorj.examples.model.JsonArray</class>
+								<class>com.github.visitorj.examples.model.JsonBoolean</class>
+								<class>com.github.visitorj.examples.model.JsonNumber</class>
+								<class>com.github.visitorj.examples.model.JsonObject</class>
+								<class>com.github.visitorj.examples.model.JsonObjectProperty</class>
 							</classes>
 						</configuration>
 					</execution>

@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 /**
  * @param <V>
- *            The visitor type.
+ *        The visitor type.
  */
 public class VisitorContext<V> {
 	private final List<ContextElement<V>> elements = new ArrayList<>();
@@ -32,7 +32,7 @@ public class VisitorContext<V> {
 		return elements.get(elements.size() - 1);
 	}
 
-	public List<ContextElement<V>> getFullContext() {
+	public List<ContextElement<V>> getElements() {
 		return elements;
 	}
 
