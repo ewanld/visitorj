@@ -1,5 +1,6 @@
 package com.github.visitorj.util;
 
+import java.util.Arrays;
 import java.util.Iterator;
 
 /**
@@ -8,6 +9,11 @@ import java.util.Iterator;
 public class CompositeIterable<T> implements Iterable<T> {
 
 	private final Iterable<? extends Iterable<? extends T>> iterables;
+
+	@SafeVarargs
+	public CompositeIterable(Iterable<? extends T>... iterables) {
+		this(Arrays.asList(iterables));
+	}
 
 	public CompositeIterable(Iterable<? extends Iterable<? extends T>> iterables) {
 		this.iterables = iterables;
