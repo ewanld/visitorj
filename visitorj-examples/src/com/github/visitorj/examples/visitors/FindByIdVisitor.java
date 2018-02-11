@@ -6,7 +6,7 @@ import com.github.visitorj.VisitResult;
 import com.github.visitorj.examples.model.JsonNumber;
 import com.github.visitorj.examples.model.JsonObject;
 import com.github.visitorj.examples.model.JsonObjectProperty;
-import com.github.ewanld.visitorexample.model.SimpleJsonVisitor;
+import com.github.visitorj.examples.model.SimpleJsonVisitor;
 
 public class FindByIdVisitor extends SimpleJsonVisitor {
 	private final int id;

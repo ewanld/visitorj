@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import com.github.visitorj.VisitEvent;
 import com.github.visitorj.VisitResult;
-import com.github.ewanld.visitorexample.model.JsonVisitor;
+import com.github.visitorj.examples.model.JsonVisitor;
 
 public class JsonNumber implements JsonElement {
 	private final BigDecimal value;

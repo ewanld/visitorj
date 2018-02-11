@@ -8,7 +8,7 @@ import com.github.visitorj.VisitEvent;
 import com.github.visitorj.VisitResult;
 import com.github.visitorj.Visitable;
 import com.github.visitorj.VisitableList;
-import com.github.ewanld.visitorexample.model.JsonVisitor;
+import com.github.visitorj.examples.model.JsonVisitor;
 
 public class JsonObjectProperty implements JsonElement {
 	private final String name;

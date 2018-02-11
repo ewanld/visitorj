@@ -10,7 +10,7 @@ import com.github.visitorj.examples.model.JsonBoolean;
 import com.github.visitorj.examples.model.JsonNumber;
 import com.github.visitorj.examples.model.JsonObject;
 import com.github.visitorj.examples.model.JsonObjectProperty;
-import com.github.ewanld.visitorexample.model.SimpleJsonVisitor;
+import com.github.visitorj.examples.model.SimpleJsonVisitor;
 
 public class PrintJsonVisitor extends SimpleJsonVisitor {
 	private final Writer writer;

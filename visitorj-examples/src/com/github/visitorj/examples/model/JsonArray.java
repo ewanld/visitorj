@@ -2,7 +2,7 @@ package com.github.visitorj.examples.model;
 
 import java.util.Collection;
 
-import com.github.ewanld.visitorexample.model.JsonVisitor;
+import com.github.visitorj.examples.model.JsonVisitor;
 import com.github.visitorj.VisitEvent;
 import com.github.visitorj.VisitResult;
 import com.github.visitorj.VisitableList;
