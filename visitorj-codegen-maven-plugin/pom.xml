@@ -11,6 +11,30 @@
 	<url>https://github.com/ewanld/visitorj</url>
 	<description>Visitor generator for Java.</description>
 
+	<licenses>
+		<license>
+			<name>MIT License</name>
+			<url>https://opensource.org/licenses/MIT</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Ewan Lassudrie-Duchesne</name>
+			<email>ewaaan@gmail.com</email>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git@github.com:ewanld/visitorj.git</connection>
+		<developerConnection>scm:git:git@github.com:ewanld/visitorj.git</developerConnection>
+		<url>git@github.com:ewanld/visitorj.git</url>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
