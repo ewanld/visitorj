@@ -55,7 +55,7 @@
 			<plugin>
 				<groupId>com.github.ewanld.visitorj</groupId>
 				<artifactId>visitorj-codegen-maven-plugin</artifactId>
-				<version>0.1.0-SNAPSHOT</version>
+				<version>0.1.0</version>
 				<executions>
 					<execution>
 						<id>id1</id>
