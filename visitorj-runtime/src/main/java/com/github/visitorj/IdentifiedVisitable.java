@@ -1,5 +1,9 @@
 package com.github.visitorj;
 
+/**
+ * A Visitable-identifier pair.
+ * @param <V> The Visitor class
+ */
 public final class IdentifiedVisitable<V> {
 	private final Visitable<V> visitable;
 	private final String identifier;

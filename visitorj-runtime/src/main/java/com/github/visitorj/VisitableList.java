@@ -7,6 +7,10 @@ import java.util.List;
 
 import com.github.visitorj.util.CompositeIterator;
 
+/**
+ * Represent a list of IdentifiedVisitable instances.
+ * @param <V> The Visitor type.
+ */
 public final class VisitableList<V> implements Iterable<IdentifiedVisitable<V>> {
 	private static final VisitableList<?> empty = new VisitableList<>();
 	private final List<Iterable<? extends IdentifiedVisitable<V>>> items = new ArrayList<>();
@@ -26,24 +30,30 @@ public final class VisitableList<V> implements Iterable<IdentifiedVisitable<V>> 
 	}
 
 	/**
-	 * Add a collection of {@link Visitable} to this list. A reference to the {@link Iterable} instance is kept, so that
-	 * if items are added or removed from the {@link Iterable}, those items will be part of this {@link VisitableList}.
+	 * Add a collection of {@link Visitable} to this list. A reference to the {@link Iterable} instance is kept, so
+	 * that
+	 * if items are added or removed from the {@link Iterable}, those items will be part of this
+	 * {@link VisitableList}.
 	 */
 	public void add(Iterable<? extends Visitable<V>> iterable, String identifier) {
 		add(new IdentifiedVisitableIterable<>(iterable, identifier));
 	}
 
 	/**
-	 * Add a collection of {@link Visitable} to this list. A reference to the {@link Iterable} instance is kept, so that
-	 * if items are added or removed from the {@link Iterable}, those items will be part of this {@link VisitableList}.
+	 * Add a collection of {@link Visitable} to this list. A reference to the {@link Iterable} instance is kept, so
+	 * that
+	 * if items are added or removed from the {@link Iterable}, those items will be part of this
+	 * {@link VisitableList}.
 	 */
 	public void add(Iterable<? extends Visitable<V>> iterable) {
 		add(new IdentifiedVisitableIterable<>(iterable, null));
 	}
 
 	/**
-	 * Add a collection of {@link Visitable} to this list. A reference to the {@link Iterable} instance is kept, so that
-	 * if items are added or removed from the {@link Iterable}, those items will be part of this {@link VisitableList}.
+	 * Add a collection of {@link Visitable} to this list. A reference to the {@link Iterable} instance is kept, so
+	 * that
+	 * if items are added or removed from the {@link Iterable}, those items will be part of this
+	 * {@link VisitableList}.
 	 */
 	public void add(final IdentifiedVisitableIterable<V> iterable) {
 		items.add(iterable);

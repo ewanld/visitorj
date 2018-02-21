@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * Contains a stack of the parent Visitable elements, to provide context when visiting an object.
  * @param <V>
  *        The visitor type.
  */

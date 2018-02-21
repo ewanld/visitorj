@@ -6,15 +6,15 @@ import java.util.Queue;
 
 /**
  * Represents an object that can be visited by a Visitor.
- * @param <T>
+ * @param <V>
  *        The Visitor type.
  */
-public interface Visitable<T> {
+public interface Visitable<V> {
 	/**
 	 * Traverse this object structure (depth-first).<br>
 	 * This method should not be overriden.
 	 */
-	default VisitResult accept(T visitor) {
+	default VisitResult accept(V visitor) {
 		return accept(visitor, null);
 	}
 
@@ -22,19 +22,19 @@ public interface Visitable<T> {
 	 * Traverse this object structure (depth-first).<br>
 	 * This method should not be overriden.
 	 */
-	default VisitResult accept(T visitor, String identifier) {
+	default VisitResult accept(V visitor, String identifier) {
 		final VisitResult result = visit(visitor, identifier);
 
 		if (result == VisitResult.ABORT) return VisitResult.ABORT;
 
 		if (!result.skipChildren()) {
-			final Iterator<? extends IdentifiedVisitable<T>> it = getVisitableChildren().iterator();
+			final Iterator<? extends IdentifiedVisitable<V>> it = getVisitableChildren().iterator();
 			boolean first = true;
 			while (it.hasNext()) {
 				if (!first) event(VisitEvent.INBETWEEN_CHILDREN, visitor);
 				first = false;
 				event(VisitEvent.BEFORE_CHILD, visitor);
-				final IdentifiedVisitable<T> child = it.next();
+				final IdentifiedVisitable<V> child = it.next();
 				final VisitResult childResult = child == null || child.get() == null ? VisitResult.CONTINUE
 						: child.get().accept(visitor, child.getIdentifier());
 				if (childResult == VisitResult.ABORT) return VisitResult.ABORT;
@@ -51,11 +51,11 @@ public interface Visitable<T> {
 	 * This method should not be overriden.<br>
 	 * Warning: does not call event methods.
 	 */
-	default void accept_breadthFirst(T visitor) {
-		final Queue<IdentifiedVisitable<T>> queue = new LinkedList<>();
+	default void accept_breadthFirst(V visitor) {
+		final Queue<IdentifiedVisitable<V>> queue = new LinkedList<>();
 		queue.add(new IdentifiedVisitable<>(this, null));
 		while (!queue.isEmpty()) {
-			final IdentifiedVisitable<T> node = queue.remove();
+			final IdentifiedVisitable<V> node = queue.remove();
 			final VisitResult result = node.get().visit(visitor, node.getIdentifier());
 			if (result == VisitResult.ABORT) return;
 			if (result.skipSiblings()) queue.clear();
@@ -66,7 +66,7 @@ public interface Visitable<T> {
 	/**
 	 * Return an iterator on the child nodes of this object. The default implementation has no child nodes.
 	 */
-	default Iterable<IdentifiedVisitable<T>> getVisitableChildren() {
+	default Iterable<IdentifiedVisitable<V>> getVisitableChildren() {
 		return VisitableList.empty();
 	}
 
@@ -74,11 +74,11 @@ public interface Visitable<T> {
 	 * The implementation should always be the same:<br>
 	 * {@code visitor.event(event, this);}
 	 */
-	void event(VisitEvent event, T visitor);
+	void event(VisitEvent event, V visitor);
 
 	/**
 	 * The implementation should always be the same:<br>
 	 * {@code return visitor.visit(this, identifier);}
 	 */
-	VisitResult visit(T visitor, String identifier);
+	VisitResult visit(V visitor, String identifier);
 }
