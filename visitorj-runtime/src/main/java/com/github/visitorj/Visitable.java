@@ -6,9 +6,8 @@ import java.util.Queue;
 
 /**
  * Represents an object that can be visited by a Visitor.
- * 
  * @param <T>
- *            The Visitor type.
+ *        The Visitor type.
  */
 public interface Visitable<T> {
 	/**
@@ -67,7 +66,7 @@ public interface Visitable<T> {
 	/**
 	 * Return an iterator on the child nodes of this object. The default implementation has no child nodes.
 	 */
-	default VisitableList<T> getVisitableChildren() {
+	default Iterable<IdentifiedVisitable<T>> getVisitableChildren() {
 		return VisitableList.empty();
 	}
 
