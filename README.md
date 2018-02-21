@@ -50,27 +50,43 @@ public class ClassA implements Visitable<Visitor> {
   a.accept_breadthFirst(new VisitorImpl());
 ```
 
+## Code generation (using Maven)
+Configure the Maven plugin as in this example:
 
-## Code generation
-* Add a dependecy to the project ```visitorj-codegen```.
-* Call the code generator:
-```java
-  final File outputDir = ...;
-  final String packageName = "com.example";
-
-	final List<JavaClass> classes = new ArrayList<>();
-  classes.add(new JavaClass("com.example.ClassA")); 
-  classes.add(new JavaClass("com.example.ClassB"));
-  final CodeGeneratorService codeGen = new CodeGeneratorService();
-  codeGen.generateAll("ClassA", outputDir, classes, packageName);
+```xml
+<plugin>
+    <groupId>com.github.ewanld.visitorj</groupId>
+    <artifactId>visitorj-codegen-maven-plugin</artifactId>
+    <version>0.1.0</version>
+    <executions>
+        <execution>
+            <id>id1</id>
+            <phase>generate-sources</phase>
+            <goals>
+                <goal>generate</goal>
+            </goals>
+            <configuration>
+                <packageName>com.github.ewanld.visitorj.examples.model</packageName>
+                <visitorName>Json</visitorName>
+                <classes>
+                    <class>com.github.visitorj.examples.model.JsonArray</class>
+                    <class>com.github.visitorj.examples.model.JsonBoolean</class>
+                    <class>com.github.visitorj.examples.model.JsonNumber</class>
+                    <class>com.github.visitorj.examples.model.JsonObject</class>
+                    <class>com.github.visitorj.examples.model.JsonObjectProperty</class>
+                </classes>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
 ```
 
 * The following files are created:
-  * ClassAVisitor.java: The Visitor interface.
-  * ClassAVisitorDelegate.java: a visitor delegate class.
-  * ClassAVisitorWithContext: An abstract visitor, implementing ```ClassAVisitor```, that provides traversal context.
-  * SimpleClassAVisitor: a default implementation of the ```ClassAVisitor``` interface.
-  * SimpleClassAVisitorWithContext: a default implementation of the ```ClassAVisitorWithContext``` abstract class.
+  * JsonVisitor.java: The Visitor interface.
+  * JsonVisitorDelegate.java: a visitor delegate class.
+  * JsonVisitorWithContext: An abstract visitor, implementing ```JsonVisitor```, that provides traversal context.
+  * SimpleJsonVisitor: a default implementation of the ```JsonVisitor``` interface.
+  * SimpleJsonVisitorWithContext: a default implementation of the ```JsonVisitorWithContext``` abstract class.
 
 ## Examples
 Check out the example contained in the project ```visitorj-examples```.
