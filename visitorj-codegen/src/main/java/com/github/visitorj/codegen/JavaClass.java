@@ -9,9 +9,7 @@ public class JavaClass {
 
 	/**
 	 * @param fullName
-	 *            package name + class name
-	 * @param recursive
-	 *            True if the class references itself in its children, false otherwise.
+	 *        package name + class name
 	 */
 	public JavaClass(String fullName) {
 		final int dotIndex = fullName.lastIndexOf('.');
