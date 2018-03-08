@@ -15,6 +15,15 @@ public final class VisitableList<V> implements Iterable<IdentifiedVisitable<V>> 
 	private static final VisitableList<?> empty = new VisitableList<>();
 	private final List<Iterable<? extends IdentifiedVisitable<V>>> items = new ArrayList<>();
 
+	public VisitableList() {
+
+	}
+
+	public VisitableList(Iterable<? extends Visitable<V>> iterable) {
+		this();
+		add(iterable);
+	}
+
 	/**
 	 * Add a single Visitable instance to this list.
 	 */
