@@ -14,7 +14,8 @@ public class VisitorGenerator extends AbstractGenerator {
 	}
 
 	@Override
-	public void generate(String visitorName, String packageName, Collection<JavaClass> classes) throws IOException {
+	public void generate(String visitorName, String packageName, Collection<? extends JavaClass> classes)
+			throws IOException {
 		// @formatter:off
 		writeln("package %s;\n", packageName);
 		writeln();

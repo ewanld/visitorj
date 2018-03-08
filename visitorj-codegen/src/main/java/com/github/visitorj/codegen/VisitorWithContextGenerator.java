@@ -17,7 +17,8 @@ public class VisitorWithContextGenerator extends AbstractGenerator {
 	}
 
 	@Override
-	public void generate(String visitorName, String packageName, Collection<JavaClass> classes) throws IOException {
+	public void generate(String visitorName, String packageName, Collection<? extends JavaClass> classes)
+			throws IOException {
 		writeln("package %s;\n", packageName);
 		writeln("import %s;", List.class.getName());
 		writeln("import %s;", ArrayList.class.getName());

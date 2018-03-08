@@ -3,6 +3,7 @@ package com.github.visitorj.codegen;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.EnumSet;
 import java.util.List;
 
@@ -10,8 +11,8 @@ import java.util.List;
  * Entry point for the code generation facility.
  */
 public class VisitorGeneratorService {
-	public void generate(String visitorName, File outputDir, List<JavaClass> classes, String packageName,
-			EnumSet<GeneratorType> toBeGenerated) throws IOException {
+	public void generate(String visitorName, File outputDir, Collection<? extends JavaClass> classes,
+			String packageName, EnumSet<GeneratorType> toBeGenerated) throws IOException {
 		final File srcDir = new File(outputDir.getPath() + "/" + packageName.replace('.', '/'));
 		srcDir.mkdirs();
 
