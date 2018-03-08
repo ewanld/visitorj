@@ -2,7 +2,6 @@ package com.github.ewanld.visitor;
 
 import java.util.Arrays;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class VisitableTest {
