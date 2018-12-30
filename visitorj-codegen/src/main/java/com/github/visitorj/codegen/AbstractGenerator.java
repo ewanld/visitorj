@@ -17,6 +17,10 @@ public abstract class AbstractGenerator implements AutoCloseable {
 		writeln("");
 	}
 
+	public void write(String format, Object... args) throws IOException {
+		writer.write(String.format(format, args));
+	}
+
 	public void writeln(String format, Object... args) throws IOException {
 		writer.write(String.format(format, args) + "\n");
 	}
