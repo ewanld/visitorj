@@ -23,7 +23,8 @@ public interface Visitable<V> {
 	 * This method should not be overriden.
 	 */
 	default VisitResult accept(V visitor, String identifier) {
-		final VisitResult result = visit(visitor, identifier);
+		VisitResult result = visit(visitor, identifier);
+		if (result == null) result = VisitResult.CONTINUE;
 
 		if (result == VisitResult.ABORT) return VisitResult.ABORT;
 
@@ -42,7 +43,7 @@ public interface Visitable<V> {
 				if (childResult.skipSiblings()) break;
 			}
 		}
-		event(VisitEvent.LEAVE, visitor);
+		if (!result.skipCurrentNode()) event(VisitEvent.LEAVE, visitor);
 		return result;
 	}
 
