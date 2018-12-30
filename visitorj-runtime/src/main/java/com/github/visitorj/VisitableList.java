@@ -28,6 +28,7 @@ public final class VisitableList<V> implements Iterable<IdentifiedVisitable<V>> 
 	 * Add a single Visitable instance to this list.
 	 */
 	public void add(Visitable<V> visitable, String identifier) {
+		if (visitable == null) return;
 		items.add(Collections.singleton(new IdentifiedVisitable<>(visitable, identifier)));
 	}
 
@@ -45,6 +46,7 @@ public final class VisitableList<V> implements Iterable<IdentifiedVisitable<V>> 
 	 * {@link VisitableList}.
 	 */
 	public void add(Iterable<? extends Visitable<V>> iterable, String identifier) {
+		if (iterable == null) return;
 		add(new IdentifiedVisitableIterable<>(iterable, identifier));
 	}
 
@@ -55,6 +57,7 @@ public final class VisitableList<V> implements Iterable<IdentifiedVisitable<V>> 
 	 * {@link VisitableList}.
 	 */
 	public void add(Iterable<? extends Visitable<V>> iterable) {
+		if (iterable == null) return;
 		add(new IdentifiedVisitableIterable<>(iterable, null));
 	}
 
@@ -65,6 +68,7 @@ public final class VisitableList<V> implements Iterable<IdentifiedVisitable<V>> 
 	 * {@link VisitableList}.
 	 */
 	public void add(final IdentifiedVisitableIterable<V> iterable) {
+		if (iterable == null) return;
 		items.add(iterable);
 	}
 
